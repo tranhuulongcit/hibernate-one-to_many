@@ -29,9 +29,16 @@ public class HibernateOneToManyApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         Users user = new Users("longtran", "tranhuulongcit@gmail.com", "Long", "Tran");
+
         Images image1 = new Images("maria ozawa", "https://link.vn/maria.jpg", "image/jpg", "2566", new Date());
+        image1.setUser(user);
+
         Images image2 = new Images("ngoc trinh", "https://link.vn/ngoctrinh.jpg", "image/jpg", "2976", new Date());
+        image2.setUser(user);
+
         user.setImages(Arrays.asList(image1, image2));
+
+
         //lưu vào database
         //vì chúng ta đang config cascade = CascadeType.ALL nên nó sẻ lưu luôn image
         entityManager.persist(user);
