@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.awt.*;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
@@ -48,5 +49,12 @@ public class HibernateOneToManyApplication implements CommandLineRunner {
 
         System.out.println(p);
         p.getImages().forEach(System.out::println);
+
+        //Ngược lại chúng ta có thể biết đc owner của image bằng cách
+        Images img = entityManager.find(Images.class, 1l);
+        System.out.println(img);
+
+        System.out.println(img.getUser());
+
     }
 }
